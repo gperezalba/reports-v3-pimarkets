@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="icon" type="image/png" href="https://www.pimarkets.io/favicon.ico"/>
+    <title>PiMarkets® Reportes</title>
+    <script src="https://cdn.jsdelivr.net/npm/pi-markets@1.0.42/dist/pimarkets.min.js"></script>
+    <script type="text/javascript">
+        let timeLow = 0;
+        let timeHigh = 32703676400;
+
+        async function getTransactionReport(month, year) {
+            document.getElementById("wait").innerHTML = "Espere...(> 30 min)";
+            let reportsService = new pimarkets.Report('mainnet');
+            await reportsService.getTransactionReport(
+                timeLow,
+                timeHigh
+            )
+            document.getElementById("wait").innerHTML = "Descarga completada";
+        }
+
+        async function getDealsReport(month, year) {
+            document.getElementById("wait").innerHTML = "Espere...";
+            let reportsService = new pimarkets.Report('mainnet');
+            await reportsService.getDealsReport(
+                timeLow,
+                timeHigh
+            )
+            document.getElementById("wait").innerHTML = "Descarga completada";
+        }
+
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  </head>
+  <body>
+  <style type='text/css'>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 400;
+            background-color: #004381
+        }
+        
+        h1 {
+            color: white;
+        }
+
+        h2 {
+            color: white;
+        }
+
+        h3 {
+            color: white;
+        }
+
+        h4 {
+            color: white;
+        }
+
+        h5 {
+            color: white;
+        }
+
+        .mySelector {
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 400;
+            width: 150px;
+            font-size: 16px;
+        }
+
+        .myCheckbox {
+            font-color: white;
+            background-color: green;
+        }
+
+        label {
+            color:white;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .myButton {
+            box-shadow: 0px 1px 0px 0px #fff6af;
+            background:linear-gradient(to bottom, #ffec64 5%, #ffab23 100%);
+            background-color:#ffec64;
+            border-radius:6px;
+            border:1px solid #ffaa22;
+            display:inline-block;
+            cursor:pointer;
+            color:#333333;
+            font-family:Arial;
+            font-size:15px;
+            font-weight:bold;
+            padding:6px 24px;
+            text-decoration:none;
+            text-shadow:0px 1px 0px #ffee66;
+        }
+        .myButton:hover {
+            background:linear-gradient(to bottom, #ffab23 5%, #ffec64 100%);
+            background-color:#ffab23;
+        }
+        .myButton:active {
+            position:relative;
+            top:1px;
+        }
+
+        .redondeadonorelieve {
+            border-radius: 5px;
+            border: 1px solid #39c;
+            text-align: center;
+            line-height: 30px;
+        }
+
+        .center {
+            margin: auto;
+            padding: 10px;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+
+    <div class="center">
+        <h1>PiMarkets®</h1>
+        <h4>- Reportes v1.0.42 -</h4>
+        <h4>- (todo el histórico sin discriminar por activo) -</h4>
+        <br>
+        <br>
+        <div style="color: white;" id="wait"></div>
+        <br>
+        <button class="myButton" onclick="getTransactionReport();">Descargar Transacciones</button>
+        <br>
+        <br>
+        <button class="myButton" onclick="getDealsReport();">Descargar Pactos</button>
+    </div>
+  </body>
+</html>
